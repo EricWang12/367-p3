@@ -9,7 +9,8 @@ public class FileLinePriorityQueue implements MinPriorityQueueADT<FileLine> {
     // TODO
     private Comparator<FileLine> cmp;
     private int maxSize;
-
+    private int numItems;
+    
     public FileLinePriorityQueue(int initialSize, Comparator<FileLine> cmp) {
 		this.cmp = cmp;
 		maxSize = initialSize;
@@ -24,11 +25,13 @@ public class FileLinePriorityQueue implements MinPriorityQueueADT<FileLine> {
     }
 
     public void insert(FileLine fl) throws PriorityQueueFullException {
-		// TODO
+		if (numItems >= maxSize){
+			throw new PriorityQueueFullException();// TODO
+		}
     }
 
     public boolean isEmpty() {
 		// TODO
-		return true;
+		return numItems == 0;
     }
 }
