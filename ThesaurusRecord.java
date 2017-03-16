@@ -1,12 +1,14 @@
 import java.util.Comparator;
-
+import java.util.ArrayList;
+import java.util.Collections;
 /**
  * The ThesaurusRecord class is the child class of Record to be used when merging thesaurus data.
  */
 
 public class ThesaurusRecord extends Record{
     // TODO declare data structures required
-
+		ArrayList<String> list;
+		String word;
 	/**
 	 * Constructs a new ThesaurusRecord by passing the parameter to the parent constructor
 	 * and then calling the clear method()
@@ -24,10 +26,10 @@ public class ThesaurusRecord extends Record{
 	 */
 	private class ThesaurusLineComparator implements Comparator<FileLine> {
 		public int compare(FileLine l1, FileLine l2) {
+			// TODO implement compare() functionality
 			String[] L1 = l1.getString().split(":");
 			String[] L2 = l2.getString().split(":");
 			return L1[0].compareTo(L2[0]); // TODO implement compare() functionality
-
 		}
 		
 		public boolean equals(Object o) {
@@ -47,6 +49,9 @@ public class ThesaurusRecord extends Record{
 	 */
     public void clear() {
 		// TODO initialize/reset data members
+    	list = new ArrayList<String>();
+    	word = null;
+    	
     }
 	
 	/**
@@ -55,6 +60,17 @@ public class ThesaurusRecord extends Record{
 	 */
     public void join(FileLine w) {
 		// TODO implement join() functionality
+    	String[] tmp1 = w.getString().split(":");
+    	String[] tmp2;
+    	if (word == null){
+    		word = tmp1[0];
+    	}
+    	
+    	 tmp2 = tmp1[1].split(",");
+    	 for (int i=0; i<tmp2.length; i++){
+    		 if (!list.contains(tmp2[i]))
+    		 list.add(tmp2[i]);
+    	 }
     }
 	
 	/**
@@ -62,6 +78,11 @@ public class ThesaurusRecord extends Record{
 	 */
     public String toString() {
 		// TODO
-		return null;
+    	Collections.sort(list);
+    	String rtrn = word + ":";
+    	for (int i = 0; i<list.size(); i++){
+    		rtrn = rtrn + list.get(i) + ",";
+    	}
+		return rtrn;
 	}
 }

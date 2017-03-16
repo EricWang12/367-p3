@@ -6,8 +6,8 @@ import java.util.Comparator;
  * l stores the weather readings, in the same order as the files from which they came are indexed.
  */
 public class WeatherRecord extends Record{
-	// TODO declare data structures required
-	
+    // TODO declare data structures required
+
 	/**
 	 * Constructs a new WeatherRecord by passing the parameter to the parent constructor
 	 * and then calling the clear method()
@@ -22,14 +22,9 @@ public class WeatherRecord extends Record{
 	 * they are the same, then the dates should be compared. 
 	 */
     private class WeatherLineComparator implements Comparator<FileLine> {
-		public int compare(FileLine l1, FileLine l2) throws NullPointerException{
-			if ( l1 == null || l2 == null ){
-				throw new NullPointerException();// TODO implement compare() functionality
-			}
-			if ( l1.getString().equals(l2.getString())){
-				return 0;
-			}
-			String L1 =  l1.getString().substring(0, l1.getString().indexOf(","))
+		public int compare(FileLine l1, FileLine l2) {
+			// TODO implement compare() functionality
+			
 			return 0;
 		}
 		
