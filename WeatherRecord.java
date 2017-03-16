@@ -6,8 +6,8 @@ import java.util.Comparator;
  * l stores the weather readings, in the same order as the files from which they came are indexed.
  */
 public class WeatherRecord extends Record{
-    // TODO declare data structures required
-
+	// TODO declare data structures required
+	
 	/**
 	 * Constructs a new WeatherRecord by passing the parameter to the parent constructor
 	 * and then calling the clear method()
@@ -22,10 +22,42 @@ public class WeatherRecord extends Record{
 	 * they are the same, then the dates should be compared. 
 	 */
     private class WeatherLineComparator implements Comparator<FileLine> {
-		public int compare(FileLine l1, FileLine l2) {
-			// TODO implement compare() functionality
+		public int compare(FileLine l1, FileLine l2) throws NullPointerException{
+			if ( l1 == null || l2 == null ){
+				throw new NullPointerException();// TODO implement compare() functionality
+			}
+			if ( l1.getString().equals(l2.getString())){
+				return 0;
+			}
+			/*
+			//String Station1 =  l1.getString().substring(0, l1.getString().indexOf(","));
+			//String Station2 =  l2.getString().substring(0, l2.getString().indexOf(","));
 			
-			return 0;
+			
+			int compareStation =  Station1.compareTo(Station2);
+			if ( compareStation == 0){
+				String L1 = l1.getString().substring(Station1.length() + 1);
+				String Date1 = L1.substring ( 0, L1.indexOf(","));
+				String L2 = l2.getString().substring(Station2.length() + 1);
+				String Date2 = L2.substring ( 0, L2.indexOf(","));
+				int compareDate = Date1.compareTo(Date2);
+				return compareDate;
+				
+			}
+			else{
+				return compareStation;
+			}
+			*/
+			String[] L1 = l1.getString().split(",");
+			String[] L2 = l2.getString().split(",");
+			int compareStation = L1[0].compareTo(L2[0]);
+			if ( compareStation == 0){
+				return L1[1].compareTo(L2[1]);
+			}
+			else {
+				return compareStation;
+			}
+			
 		}
 		
 		public boolean equals(Object o) {
