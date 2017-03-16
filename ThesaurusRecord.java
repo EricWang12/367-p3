@@ -24,9 +24,10 @@ public class ThesaurusRecord extends Record{
 	 */
 	private class ThesaurusLineComparator implements Comparator<FileLine> {
 		public int compare(FileLine l1, FileLine l2) {
-			// TODO implement compare() functionality
+			String[] L1 = l1.getString().split(":");
+			String[] L2 = l2.getString().split(":");
+			return L1[0].compareTo(L2[0]); // TODO implement compare() functionality
 
-			return 0;
 		}
 		
 		public boolean equals(Object o) {
